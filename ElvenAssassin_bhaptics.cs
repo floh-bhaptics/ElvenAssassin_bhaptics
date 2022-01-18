@@ -43,7 +43,7 @@ namespace ElvenAssassin_bhaptics
             [HarmonyPostfix]
             public static void Postfix(WenklyStudio.BowController __instance)
             {
-                if (!__instance.IsHandAttached) return;
+                //if (!__instance.IsHandAttached) return;
                 if (isRightHanded) tactsuitVr.PlaybackHaptics("BowRelease_R");
                 else tactsuitVr.PlaybackHaptics("BowRelease_L");
             }
@@ -62,6 +62,47 @@ namespace ElvenAssassin_bhaptics
             }
         }
 
+        [HarmonyPatch(typeof(WenklyStudio.ElvenAssassin.DeathMatchKillsController), "KillPlayer", new Type[] { typeof(PlayerControllerCore), typeof(PlayerControllerCore) })]
+        public class bhaptics_PlayerKillPlayer
+        {
+            [HarmonyPostfix]
+            public static void Postfix(PlayerControllerCore victim)
+            {
+                if (victim != PlayersManager.Instance.LocalPlayer) return;
+                tactsuitVr.PlaybackHaptics("Impact");
+            }
+        }
+
+        [HarmonyPatch(typeof(WenklyStudio.ElvenAssassin.TrollAttackController), "AnimationEventKillPlayer", new Type[] {  })]
+        public class bhaptics_TrollKillPlayer
+        {
+            [HarmonyPostfix]
+            public static void Postfix()
+            {
+                tactsuitVr.PlaybackHaptics("Impact");
+            }
+        }
+
+        [HarmonyPatch(typeof(WenklyStudio.ElvenAssassin.AxeController), "RpcPlayPlayerFleshSound", new Type[] { })]
+        public class bhaptics_AxeHitPlayer
+        {
+            [HarmonyPostfix]
+            public static void Postfix()
+            {
+                tactsuitVr.PlaybackHaptics("Impact");
+            }
+        }
         #endregion
+
+        [HarmonyPatch(typeof(WenklyStudio.ElvenAssassin.TrollAttackController), "Shout", new Type[] { })]
+        public class bhaptics_TrollShout
+        {
+            [HarmonyPostfix]
+            public static void Postfix()
+            {
+                tactsuitVr.PlaybackHaptics("BellyRumble");
+            }
+        }
+
     }
 }

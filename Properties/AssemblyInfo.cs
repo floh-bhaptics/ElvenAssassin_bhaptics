@@ -15,7 +15,7 @@ using MelonLoader;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: MelonInfo(typeof(ElvenAssassin_bhaptics.ElvenAssassin_bhaptics), "ElvenAssassin_bhaptics", "1.0", "Florian Fahrenberger")]
+[assembly: MelonInfo(typeof(ElvenAssassin_bhaptics.ElvenAssassin_bhaptics), "ElvenAssassin_bhaptics", "1.1", "Florian Fahrenberger")]
 [assembly: MelonGame("WenklyStudio", "Elven Assassin")]
 
 // Durch Festlegen von ComVisible auf FALSE werden die Typen in dieser Assembly
