@@ -10,6 +10,9 @@ using HarmonyLib;
 
 using MyBhapticsTactsuit;
 
+[assembly: MelonInfo(typeof(ElvenAssassin_bhaptics.ElvenAssassin_bhaptics), "ElvenAssassin_bhaptics", "2.0.0", "Florian Fahrenberger")]
+[assembly: MelonGame("WenklyStudio", "Elven Assassin")]
+
 
 namespace ElvenAssassin_bhaptics
 {
@@ -18,9 +21,8 @@ namespace ElvenAssassin_bhaptics
         public static TactsuitVR tactsuitVr;
         public static bool isRightHanded = true;
 
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
-            base.OnApplicationStart();
             tactsuitVr = new TactsuitVR();
             tactsuitVr.PlaybackHaptics("HeartBeat");
         }
